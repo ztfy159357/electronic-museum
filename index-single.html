@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电子博物馆</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <style>
+    :root {
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+      color-scheme: light dark;
+      color: rgba(255, 255, 255, 0.87);
+      background-color: #242424;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+    }
+
+    #root {
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #444;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #ff6b6b;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      color: #aaa;
+    }
+
+    .upload-section {
+      background: #333;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .upload-section h2 {
+      margin-bottom: 1rem;
+      color: #ff6b6b;
+    }
+
+    .upload-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      color: #ddd;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea {
+      padding: 0.8rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .form-group input[type="file"] {
+      padding: 0.5rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+    }
+
+    .form-group select {
+      padding: 0.8rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .submit-btn {
+      padding: 0.8rem 1.5rem;
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #ff5252;
+    }
+
+    .galleries {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .gallery-section {
+      background: #333;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-section h2 {
+      margin-bottom: 1.5rem;
+      color: #ff6b6b;
+    }
+
+    .gallery-section.apple {
+      border-left: 4px solid #4caf50;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .item-card {
+      background: #2a2a2a;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .item-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .item-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .item-content {
+      padding: 1rem;
+    }
+
+    .item-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .item-description {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 1rem;
+    }
+
+    .item-meta {
+      font-size: 0.8rem;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .success-message {
+      background: #4caf50;
+      color: white;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      text-align: center;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .upload-section,
+      .gallery-section {
+        padding: 1.5rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const { useState } = React;
+
+    function App() {
+      const [items, setItems] = useState([]);
+      const [title, setTitle] = useState('');
+      const [description, setDescription] = useState('');
+      const [file, setFile] = useState(null);
+      const [section, setSection] = useState('normal');
+      const [showSuccess, setShowSuccess] = useState(false);
+
+      const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!title || !description || !file) return;
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const newItem = {
+            id: Date.now(),
+            title,
+            description,
+            image: reader.result,
+            section,
+            date: new Date().toLocaleString()
+          };
+          setItems([...items, newItem]);
+          setTitle('');
+          setDescription('');
+          setFile(null);
+          setSection('normal');
+          setShowSuccess(true);
+          setTimeout(() => setShowSuccess(false), 3000);
+        };
+        reader.readAsDataURL(file);
+      };
+
+      const appleItems = items.filter(item => item.section === 'apple');
+      const normalItems = items.filter(item => item.section === 'normal');
+
+      return React.createElement('div', { className: 'container' },
+        React.createElement('header', { className: 'header' },
+          React.createElement('h1', null, '电子博物馆'),
+          React.createElement('p', null, '分享你的珍贵回忆与收藏')
+        ),
+
+        React.createElement('section', { className: 'upload-section' },
+          React.createElement('h2', null, '上传展品'),
+          showSuccess && React.createElement('div', { className: 'success-message' }, '上传成功！'),
+          React.createElement('form', { className: 'upload-form', onSubmit: handleSubmit },
+            React.createElement('div', { className: 'form-group' },
+              React.createElement('label', { htmlFor: 'title' }, '标题'),
+              React.createElement('input', {
+                type: 'text',
+                id: 'title',
+                value: title,
+                onChange: (e) => setTitle(e.target.value),
+                required: true
+              })
+            ),
+            React.createElement('div', { className: 'form-group' },
+              React.createElement('label', { htmlFor: 'description' }, '描述'),
+              React.createElement('textarea', {
+                id: 'description',
+                value: description,
+                onChange: (e) => setDescription(e.target.value),
+                rows: 4,
+                required: true
+              })
+            ),
+            React.createElement('div', { className: 'form-group' },
+              React.createElement('label', { htmlFor: 'file' }, '图片'),
+              React.createElement('input', {
+                type: 'file',
+                id: 'file',
+                accept: 'image/*',
+                onChange: handleFileChange,
+                required: true
+              })
+            ),
+            React.createElement('div', { className: 'form-group' },
+              React.createElement('label', { htmlFor: 'section' }, '专区'),
+              React.createElement('select', {
+                id: 'section',
+                value: section,
+                onChange: (e) => setSection(e.target.value)
+              },
+                React.createElement('option', { value: 'normal' }, '普通专区'),
+                React.createElement('option', { value: 'apple' }, '青苹果专区')
+              )
+            ),
+            React.createElement('button', { type: 'submit', className: 'submit-btn' }, '上传展品')
+          )
+        ),
+
+        React.createElement('div', { className: 'galleries' },
+          React.createElement('section', { className: 'gallery-section apple' },
+            React.createElement('h2', null, '青苹果专区'),
+            appleItems.length === 0 ? (
+              React.createElement('p', { style: { textAlign: 'center', color: '#aaa' } }, '暂无展品')
+            ) : (
+              React.createElement('div', { className: 'gallery-grid' },
+                appleItems.map(item => (
+                  React.createElement('div', { key: item.id, className: 'item-card' },
+                    React.createElement('img', { src: item.image, alt: item.title, className: 'item-image' }),
+                    React.createElement('div', { className: 'item-content' },
+                      React.createElement('h3', { className: 'item-title' }, item.title),
+                      React.createElement('p', { className: 'item-description' }, item.description),
+                      React.createElement('div', { className: 'item-meta' },
+                        React.createElement('span', null, item.date),
+                        React.createElement('span', null, item.section === 'apple' ? '青苹果专区' : '普通专区')
+                      )
+                    )
+                  )
+                ))
+              )
+            )
+          ),
+
+          React.createElement('section', { className: 'gallery-section' },
+            React.createElement('h2', null, '普通专区'),
+            normalItems.length === 0 ? (
+              React.createElement('p', { style: { textAlign: 'center', color: '#aaa' } }, '暂无展品')
+            ) : (
+              React.createElement('div', { className: 'gallery-grid' },
+                normalItems.map(item => (
+                  React.createElement('div', { key: item.id, className: 'item-card' },
+                    React.createElement('img', { src: item.image, alt: item.title, className: 'item-image' }),
+                    React.createElement('div', { className: 'item-content' },
+                      React.createElement('h3', { className: 'item-title' }, item.title),
+                      React.createElement('p', { className: 'item-description' }, item.description),
+                      React.createElement('div', { className: 'item-meta' },
+                        React.createElement('span', null, item.date),
+                        React.createElement('span', null, item.section === 'apple' ? '青苹果专区' : '普通专区')
+                      )
+                    )
+                  )
+                ))
+              )
+            )
+          )
+        )
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      React.createElement(React.StrictMode, null,
+        React.createElement(App, null)
+      )
+    );
+  </script>
+</body>
+</html>
