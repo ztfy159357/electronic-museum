@@ -60,6 +60,37 @@
       color: #aaa;
     }
 
+    .auth-section {
+      background: #333;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .auth-section h2 {
+      margin-bottom: 1rem;
+      color: #ff6b6b;
+    }
+
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #555;
+    }
+
+    .auth-tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .auth-tab.active {
+      border-bottom-color: #ff6b6b;
+      color: #ff6b6b;
+    }
+
     .upload-section {
       background: #333;
       padding: 2rem;
@@ -73,7 +104,7 @@
       color: #ff6b6b;
     }
 
-    .upload-form {
+    .form {
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -91,6 +122,8 @@
     }
 
     .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"],
     .form-group textarea {
       padding: 0.8rem;
       border: 1px solid #555;
@@ -117,7 +150,7 @@
       font-size: 1rem;
     }
 
-    .submit-btn {
+    .btn {
       padding: 0.8rem 1.5rem;
       background: #ff6b6b;
       color: white;
@@ -129,8 +162,16 @@
       transition: background 0.3s;
     }
 
-    .submit-btn:hover {
+    .btn:hover {
       background: #ff5252;
+    }
+
+    .btn-secondary {
+      background: #555;
+    }
+
+    .btn-secondary:hover {
+      background: #666;
     }
 
     .galleries {
@@ -204,14 +245,291 @@
       justify-content: space-between;
     }
 
-    .success-message {
-      background: #4caf50;
-      color: white;
+    .message {
       padding: 1rem;
       border-radius: 4px;
       margin-bottom: 1rem;
       text-align: center;
       animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .message.success {
+      background: #4caf50;
+      color: white;
+    }
+
+    .message.error {
+      background: #f44336;
+      color: white;
+    }
+
+    .user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: #333;
+      border-radius: 8px;
+    }
+
+    .user-info .username {
+      font-weight: 600;
+      color: #ff6b6b;
+    }
+
+    .nav-tabs {
+      display: flex;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #555;
+    }
+
+    .nav-tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .nav-tab.active {
+      border-bottom-color: #ff6b6b;
+      color: #ff6b6b;
+    }
+
+    .comments-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #555;
+    }
+
+    .comments-section h3 {
+      margin-bottom: 1rem;
+      color: #ff6b6b;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .comment-form textarea {
+      padding: 0.8rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+      font-size: 1rem;
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .comment-item {
+      background: #2a2a2a;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .comment-username {
+      font-weight: 600;
+      color: #ff6b6b;
+    }
+
+    .comment-time {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .comment-content {
+      color: #ddd;
+    }
+
+    .friends-section,
+    .messages-section {
+      background: #333;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .friends-section h2,
+    .messages-section h2 {
+      margin-bottom: 1rem;
+      color: #ff6b6b;
+    }
+
+    .friends-list,
+    .requests-list,
+    .messages-list,
+    .groups-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .friend-item,
+    .request-item,
+    .message-item,
+    .group-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #2a2a2a;
+      border-radius: 4px;
+    }
+
+    .friend-item:hover,
+    .request-item:hover,
+    .message-item:hover,
+    .group-item:hover {
+      background: #333;
+    }
+
+    .friend-info,
+    .request-info,
+    .message-info,
+    .group-info {
+      flex: 1;
+    }
+
+    .friend-name,
+    .request-name,
+    .message-sender,
+    .group-name {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .message-preview {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 0.25rem;
+    }
+
+    .search-bar {
+      margin-bottom: 1rem;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .chat-container {
+      display: flex;
+      height: 500px;
+      background: #2a2a2a;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .chat-sidebar {
+      width: 300px;
+      border-right: 1px solid #555;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .chat-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      padding: 1rem;
+      border-bottom: 1px solid #555;
+      background: #333;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .chat-message {
+      max-width: 70%;
+      padding: 0.8rem;
+      border-radius: 8px;
+    }
+
+    .chat-message.own {
+      align-self: flex-end;
+      background: #4caf50;
+      color: white;
+    }
+
+    .chat-message.other {
+      align-self: flex-start;
+      background: #555;
+      color: white;
+    }
+
+    .chat-input {
+      padding: 1rem;
+      border-top: 1px solid #555;
+      background: #333;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.8rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .group-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .group-members {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .member-tag {
+      background: #555;
+      padding: 0.25rem 0.5rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .member-tag .remove {
+      cursor: pointer;
+      color: #ff6b6b;
     }
 
     @keyframes fadeIn {
@@ -234,6 +552,7 @@
         font-size: 2rem;
       }
       
+      .auth-section,
       .upload-section,
       .gallery-section {
         padding: 1.5rem;
@@ -248,7 +567,10 @@
 <body>
   <div id="root"></div>
   <script>
-    const { useState } = React;
+    const { useState, useEffect } = React;
+
+    // API基础URL
+    const API_BASE_URL = 'http://localhost:5000/api';
 
     function App() {
       const [items, setItems] = useState([]);
@@ -257,36 +579,458 @@
       const [file, setFile] = useState(null);
       const [section, setSection] = useState('normal');
       const [showSuccess, setShowSuccess] = useState(false);
+      const [showError, setShowError] = useState('');
+      const [isAuthenticated, setIsAuthenticated] = useState(false);
+      const [user, setUser] = useState(null);
+      const [activeTab, setActiveTab] = useState('login');
+      const [loginEmail, setLoginEmail] = useState('');
+      const [loginPassword, setLoginPassword] = useState('');
+      const [registerUsername, setRegisterUsername] = useState('');
+      const [registerEmail, setRegisterEmail] = useState('');
+      const [registerPassword, setRegisterPassword] = useState('');
+      
+      // 新增状态
+      const [currentView, setCurrentView] = useState('museum'); // museum, friends, messages
+      const [comments, setComments] = useState({});
+      const [commentContent, setCommentContent] = useState('');
+      const [friends, setFriends] = useState([]);
+      const [friendRequests, setFriendRequests] = useState([]);
+      const [searchKeyword, setSearchKeyword] = useState('');
+      const [searchResults, setSearchResults] = useState([]);
+      const [selectedFriend, setSelectedFriend] = useState(null);
+      const [selectedGroup, setSelectedGroup] = useState(null);
+      const [messages, setMessages] = useState([]);
+      const [messageContent, setMessageContent] = useState('');
+      const [groups, setGroups] = useState([]);
+      const [groupName, setGroupName] = useState('');
+      const [groupMembers, setGroupMembers] = useState([]);
 
+      // 检查认证状态
+      useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+          checkAuth();
+        }
+      }, []);
+
+      // 获取所有展品
+      useEffect(() => {
+        fetchItems();
+      }, []);
+
+      // 获取好友列表和请求
+      useEffect(() => {
+        if (isAuthenticated) {
+          fetchFriends();
+          fetchFriendRequests();
+          fetchGroups();
+        }
+      }, [isAuthenticated]);
+
+      // 检查认证
+      const checkAuth = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/auth/me`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          if (response.ok) {
+            const userData = await response.json();
+            setUser(userData);
+            setIsAuthenticated(true);
+          } else {
+            localStorage.removeItem('token');
+            setIsAuthenticated(false);
+          }
+        } catch (error) {
+          console.error('认证检查失败:', error);
+          localStorage.removeItem('token');
+          setIsAuthenticated(false);
+        }
+      };
+
+      // 获取展品
+      const fetchItems = async () => {
+        try {
+          const response = await fetch(`${API_BASE_URL}/items`);
+          if (response.ok) {
+            const itemsData = await response.json();
+            setItems(itemsData);
+          }
+        } catch (error) {
+          console.error('获取展品失败:', error);
+        }
+      };
+
+      // 获取评论
+      const fetchComments = async (itemId) => {
+        try {
+          const response = await fetch(`${API_BASE_URL}/comments/item/${itemId}`);
+          if (response.ok) {
+            const commentsData = await response.json();
+            setComments(prev => ({ ...prev, [itemId]: commentsData }));
+          }
+        } catch (error) {
+          console.error('获取评论失败:', error);
+        }
+      };
+
+      // 提交评论
+      const handleCommentSubmit = async (itemId) => {
+        if (!commentContent) return;
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/comments`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              itemId,
+              content: commentContent
+            })
+          });
+          if (response.ok) {
+            setCommentContent('');
+            fetchComments(itemId);
+          } else {
+            const errorData = await response.json();
+            setShowError(errorData.message);
+            setTimeout(() => setShowError(''), 3000);
+          }
+        } catch (error) {
+          setShowError('评论失败，请稍后重试');
+          setTimeout(() => setShowError(''), 3000);
+        }
+      };
+
+      // 获取好友列表
+      const fetchFriends = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/friends/list`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          if (response.ok) {
+            const friendsData = await response.json();
+            setFriends(friendsData);
+          }
+        } catch (error) {
+          console.error('获取好友列表失败:', error);
+        }
+      };
+
+      // 获取好友请求
+      const fetchFriendRequests = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/friends/requests`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          if (response.ok) {
+            const requestsData = await response.json();
+            setFriendRequests(requestsData);
+          }
+        } catch (error) {
+          console.error('获取好友请求失败:', error);
+        }
+      };
+
+      // 发送好友请求
+      const sendFriendRequest = async (userId) => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/friends/request`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ receiverId: userId })
+          });
+          if (response.ok) {
+            setShowSuccess('好友请求发送成功');
+            setTimeout(() => setShowSuccess(false), 3000);
+          } else {
+            const errorData = await response.json();
+            setShowError(errorData.message);
+            setTimeout(() => setShowError(''), 3000);
+          }
+        } catch (error) {
+          setShowError('发送好友请求失败，请稍后重试');
+          setTimeout(() => setShowError(''), 3000);
+        }
+      };
+
+      // 接受好友请求
+      const acceptFriendRequest = async (requestId) => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/friends/accept/${requestId}`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          if (response.ok) {
+            setShowSuccess('好友请求接受成功');
+            setTimeout(() => setShowSuccess(false), 3000);
+            fetchFriends();
+            fetchFriendRequests();
+          } else {
+            const errorData = await response.json();
+            setShowError(errorData.message);
+            setTimeout(() => setShowError(''), 3000);
+          }
+        } catch (error) {
+          setShowError('接受好友请求失败，请稍后重试');
+          setTimeout(() => setShowError(''), 3000);
+        }
+      };
+
+      // 搜索用户
+      const searchUsers = async () => {
+        if (!searchKeyword) return;
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/friends/search?keyword=${searchKeyword}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          if (response.ok) {
+            const usersData = await response.json();
+            setSearchResults(usersData);
+          }
+        } catch (error) {
+          console.error('搜索用户失败:', error);
+        }
+      };
+
+      // 获取私信记录
+      const fetchMessages = async (friendId) => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/messages/private/${friendId}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          if (response.ok) {
+            const messagesData = await response.json();
+            setMessages(messagesData);
+          }
+        } catch (error) {
+          console.error('获取消息失败:', error);
+        }
+      };
+
+      // 发送私信
+      const sendMessage = async () => {
+        if (!messageContent || !selectedFriend) return;
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/messages/private`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              receiverId: selectedFriend._id,
+              content: messageContent
+            })
+          });
+          if (response.ok) {
+            setMessageContent('');
+            fetchMessages(selectedFriend._id);
+          } else {
+            const errorData = await response.json();
+            setShowError(errorData.message);
+            setTimeout(() => setShowError(''), 3000);
+          }
+        } catch (error) {
+          setShowError('发送消息失败，请稍后重试');
+          setTimeout(() => setShowError(''), 3000);
+        }
+      };
+
+      // 获取群组
+      const fetchGroups = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/messages/groups`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          if (response.ok) {
+            const groupsData = await response.json();
+            setGroups(groupsData);
+          }
+        } catch (error) {
+          console.error('获取群组失败:', error);
+        }
+      };
+
+      // 创建群组
+      const createGroup = async () => {
+        if (!groupName || groupMembers.length === 0) return;
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_BASE_URL}/messages/group`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              name: groupName,
+              memberIds: groupMembers.map(member => member._id)
+            })
+          });
+          if (response.ok) {
+            setGroupName('');
+            setGroupMembers([]);
+            setShowSuccess('群组创建成功');
+            setTimeout(() => setShowSuccess(false), 3000);
+            fetchGroups();
+          } else {
+            const errorData = await response.json();
+            setShowError(errorData.message);
+            setTimeout(() => setShowError(''), 3000);
+          }
+        } catch (error) {
+          setShowError('创建群组失败，请稍后重试');
+          setTimeout(() => setShowError(''), 3000);
+        }
+      };
+
+      // 登录
+      const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await fetch(`${API_BASE_URL}/auth/login`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: loginEmail, password: loginPassword })
+          });
+          if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem('token', data.token);
+            setUser(data.user);
+            setIsAuthenticated(true);
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000);
+          } else {
+            const errorData = await response.json();
+            setShowError(errorData.message);
+            setTimeout(() => setShowError(''), 3000);
+          }
+        } catch (error) {
+          setShowError('登录失败，请稍后重试');
+          setTimeout(() => setShowError(''), 3000);
+        }
+      };
+
+      // 注册
+      const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await fetch(`${API_BASE_URL}/auth/register`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+              username: registerUsername, 
+              email: registerEmail, 
+              password: registerPassword 
+            })
+          });
+          if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem('token', data.token);
+            setUser(data.user);
+            setIsAuthenticated(true);
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000);
+          } else {
+            const errorData = await response.json();
+            setShowError(errorData.message);
+            setTimeout(() => setShowError(''), 3000);
+          }
+        } catch (error) {
+          setShowError('注册失败，请稍后重试');
+          setTimeout(() => setShowError(''), 3000);
+        }
+      };
+
+      // 登出
+      const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+        setUser(null);
+      };
+
+      // 处理文件变化
       const handleFileChange = (e) => {
         setFile(e.target.files[0]);
       };
 
-      const handleSubmit = (e) => {
+      // 上传展品
+      const handleSubmit = async (e) => {
         e.preventDefault();
         if (!title || !description || !file) return;
 
         const reader = new FileReader();
-        reader.onloadend = () => {
-          const newItem = {
-            id: Date.now(),
-            title,
-            description,
-            image: reader.result,
-            section,
-            date: new Date().toLocaleString()
-          };
-          setItems([...items, newItem]);
-          setTitle('');
-          setDescription('');
-          setFile(null);
-          setSection('normal');
-          setShowSuccess(true);
-          setTimeout(() => setShowSuccess(false), 3000);
+        reader.onloadend = async () => {
+          try {
+            const token = localStorage.getItem('token');
+            const response = await fetch(`${API_BASE_URL}/items`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                title,
+                description,
+                image: reader.result,
+                section
+              })
+            });
+            if (response.ok) {
+              setTitle('');
+              setDescription('');
+              setFile(null);
+              setSection('normal');
+              setShowSuccess(true);
+              setTimeout(() => setShowSuccess(false), 3000);
+              fetchItems(); // 重新获取展品
+            } else {
+              const errorData = await response.json();
+              setShowError(errorData.message);
+              setTimeout(() => setShowError(''), 3000);
+            }
+          } catch (error) {
+            setShowError('上传失败，请稍后重试');
+            setTimeout(() => setShowError(''), 3000);
+          }
         };
         reader.readAsDataURL(file);
       };
 
+      // 分类展品
       const appleItems = items.filter(item => item.section === 'apple');
       const normalItems = items.filter(item => item.section === 'normal');
 
@@ -296,98 +1040,506 @@
           React.createElement('p', null, '分享你的珍贵回忆与收藏')
         ),
 
-        React.createElement('section', { className: 'upload-section' },
-          React.createElement('h2', null, '上传展品'),
-          showSuccess && React.createElement('div', { className: 'success-message' }, '上传成功！'),
-          React.createElement('form', { className: 'upload-form', onSubmit: handleSubmit },
-            React.createElement('div', { className: 'form-group' },
-              React.createElement('label', { htmlFor: 'title' }, '标题'),
-              React.createElement('input', {
-                type: 'text',
-                id: 'title',
-                value: title,
-                onChange: (e) => setTitle(e.target.value),
-                required: true
-              })
+        // 用户信息/登录注册
+        isAuthenticated ? (
+          React.createElement('div', { className: 'user-info' },
+            React.createElement('div', null,
+              React.createElement('span', null, '欢迎, '),
+              React.createElement('span', { className: 'username' }, user.username)
             ),
-            React.createElement('div', { className: 'form-group' },
-              React.createElement('label', { htmlFor: 'description' }, '描述'),
-              React.createElement('textarea', {
-                id: 'description',
-                value: description,
-                onChange: (e) => setDescription(e.target.value),
-                rows: 4,
-                required: true
-              })
+            React.createElement('button', { 
+              className: 'btn btn-secondary',
+              onClick: handleLogout
+            }, '登出')
+          )
+        ) : (
+          React.createElement('section', { className: 'auth-section' },
+            React.createElement('h2', null, '用户登录/注册'),
+            showSuccess && React.createElement('div', { className: 'message success' }, '操作成功！'),
+            showError && React.createElement('div', { className: 'message error' }, showError),
+            React.createElement('div', { className: 'auth-tabs' },
+              React.createElement('div', {
+                className: `auth-tab ${activeTab === 'login' ? 'active' : ''}`,
+                onClick: () => setActiveTab('login')
+              }, '登录'),
+              React.createElement('div', {
+                className: `auth-tab ${activeTab === 'register' ? 'active' : ''}`,
+                onClick: () => setActiveTab('register')
+              }, '注册')
             ),
-            React.createElement('div', { className: 'form-group' },
-              React.createElement('label', { htmlFor: 'file' }, '图片'),
-              React.createElement('input', {
-                type: 'file',
-                id: 'file',
-                accept: 'image/*',
-                onChange: handleFileChange,
-                required: true
-              })
-            ),
-            React.createElement('div', { className: 'form-group' },
-              React.createElement('label', { htmlFor: 'section' }, '专区'),
-              React.createElement('select', {
-                id: 'section',
-                value: section,
-                onChange: (e) => setSection(e.target.value)
-              },
-                React.createElement('option', { value: 'normal' }, '普通专区'),
-                React.createElement('option', { value: 'apple' }, '青苹果专区')
+            activeTab === 'login' ? (
+              React.createElement('form', { className: 'form', onSubmit: handleLogin },
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'login-email' }, '邮箱'),
+                  React.createElement('input', {
+                    type: 'email',
+                    id: 'login-email',
+                    value: loginEmail,
+                    onChange: (e) => setLoginEmail(e.target.value),
+                    required: true
+                  })
+                ),
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'login-password' }, '密码'),
+                  React.createElement('input', {
+                    type: 'password',
+                    id: 'login-password',
+                    value: loginPassword,
+                    onChange: (e) => setLoginPassword(e.target.value),
+                    required: true
+                  })
+                ),
+                React.createElement('button', { type: 'submit', className: 'btn' }, '登录')
               )
-            ),
-            React.createElement('button', { type: 'submit', className: 'submit-btn' }, '上传展品')
+            ) : (
+              React.createElement('form', { className: 'form', onSubmit: handleRegister },
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'register-username' }, '用户名'),
+                  React.createElement('input', {
+                    type: 'text',
+                    id: 'register-username',
+                    value: registerUsername,
+                    onChange: (e) => setRegisterUsername(e.target.value),
+                    required: true
+                  })
+                ),
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'register-email' }, '邮箱'),
+                  React.createElement('input', {
+                    type: 'email',
+                    id: 'register-email',
+                    value: registerEmail,
+                    onChange: (e) => setRegisterEmail(e.target.value),
+                    required: true
+                  })
+                ),
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'register-password' }, '密码'),
+                  React.createElement('input', {
+                    type: 'password',
+                    id: 'register-password',
+                    value: registerPassword,
+                    onChange: (e) => setRegisterPassword(e.target.value),
+                    required: true
+                  })
+                ),
+                React.createElement('button', { type: 'submit', className: 'btn' }, '注册')
+              )
+            )
           )
         ),
 
-        React.createElement('div', { className: 'galleries' },
-          React.createElement('section', { className: 'gallery-section apple' },
-            React.createElement('h2', null, '青苹果专区'),
-            appleItems.length === 0 ? (
-              React.createElement('p', { style: { textAlign: 'center', color: '#aaa' } }, '暂无展品')
-            ) : (
-              React.createElement('div', { className: 'gallery-grid' },
-                appleItems.map(item => (
-                  React.createElement('div', { key: item.id, className: 'item-card' },
-                    React.createElement('img', { src: item.image, alt: item.title, className: 'item-image' }),
-                    React.createElement('div', { className: 'item-content' },
-                      React.createElement('h3', { className: 'item-title' }, item.title),
-                      React.createElement('p', { className: 'item-description' }, item.description),
-                      React.createElement('div', { className: 'item-meta' },
-                        React.createElement('span', null, item.date),
-                        React.createElement('span', null, item.section === 'apple' ? '青苹果专区' : '普通专区')
-                      )
-                    )
+        // 导航标签
+        isAuthenticated && (
+          React.createElement('div', { className: 'nav-tabs' },
+            React.createElement('div', {
+              className: `nav-tab ${currentView === 'museum' ? 'active' : ''}`,
+              onClick: () => setCurrentView('museum')
+            }, '博物馆'),
+            React.createElement('div', {
+              className: `nav-tab ${currentView === 'friends' ? 'active' : ''}`,
+              onClick: () => setCurrentView('friends')
+            }, '好友'),
+            React.createElement('div', {
+              className: `nav-tab ${currentView === 'messages' ? 'active' : ''}`,
+              onClick: () => setCurrentView('messages')
+            }, '消息')
+          )
+        ),
+
+        // 内容区域
+        isAuthenticated && currentView === 'museum' && (
+          React.createElement('div', null,
+            // 上传区域
+            React.createElement('section', { className: 'upload-section' },
+              React.createElement('h2', null, '上传展品'),
+              showSuccess && React.createElement('div', { className: 'message success' }, '上传成功！'),
+              showError && React.createElement('div', { className: 'message error' }, showError),
+              React.createElement('form', { className: 'form', onSubmit: handleSubmit },
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'title' }, '标题'),
+                  React.createElement('input', {
+                    type: 'text',
+                    id: 'title',
+                    value: title,
+                    onChange: (e) => setTitle(e.target.value),
+                    required: true
+                  })
+                ),
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'description' }, '描述'),
+                  React.createElement('textarea', {
+                    id: 'description',
+                    value: description,
+                    onChange: (e) => setDescription(e.target.value),
+                    rows: 4,
+                    required: true
+                  })
+                ),
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'file' }, '图片'),
+                  React.createElement('input', {
+                    type: 'file',
+                    id: 'file',
+                    accept: 'image/*',
+                    onChange: handleFileChange,
+                    required: true
+                  })
+                ),
+                React.createElement('div', { className: 'form-group' },
+                  React.createElement('label', { htmlFor: 'section' }, '专区'),
+                  React.createElement('select', {
+                    id: 'section',
+                    value: section,
+                    onChange: (e) => setSection(e.target.value)
+                  },
+                    React.createElement('option', { value: 'normal' }, '普通专区'),
+                    React.createElement('option', { value: 'apple' }, '青苹果专区')
                   )
-                ))
+                ),
+                React.createElement('button', { type: 'submit', className: 'btn' }, '上传展品')
+              )
+            ),
+
+            // 展品展示
+            React.createElement('div', { className: 'galleries' },
+              React.createElement('section', { className: 'gallery-section apple' },
+                React.createElement('h2', null, '青苹果专区'),
+                appleItems.length === 0 ? (
+                  React.createElement('p', { style: { textAlign: 'center', color: '#aaa' } }, '暂无展品')
+                ) : (
+                  React.createElement('div', { className: 'gallery-grid' },
+                    appleItems.map(item => (
+                      React.createElement('div', { key: item._id, className: 'item-card' },
+                        React.createElement('img', { src: item.image, alt: item.title, className: 'item-image' }),
+                        React.createElement('div', { className: 'item-content' },
+                          React.createElement('h3', { className: 'item-title' }, item.title),
+                          React.createElement('p', { className: 'item-description' }, item.description),
+                          React.createElement('div', { className: 'item-meta' },
+                            React.createElement('span', null, new Date(item.createdAt).toLocaleString()),
+                            React.createElement('span', null, item.userId?.username || '未知用户')
+                          ),
+                          // 评论部分
+                          React.createElement('div', { className: 'comments-section' },
+                            React.createElement('h3', null, '评论'),
+                            // 评论表单
+                            React.createElement('div', { className: 'comment-form' },
+                              React.createElement('textarea', {
+                                placeholder: '写下你的评论...',
+                                value: commentContent,
+                                onChange: (e) => setCommentContent(e.target.value)
+                              }),
+                              React.createElement('button', {
+                                className: 'btn',
+                                onClick: () => handleCommentSubmit(item._id)
+                              }, '发表评论')
+                            ),
+                            // 评论列表
+                            React.createElement('div', { className: 'comments-list' },
+                              React.createElement('button', {
+                                className: 'btn btn-secondary',
+                                onClick: () => fetchComments(item._id)
+                              }, '加载评论'),
+                              comments[item._id]?.map(comment => (
+                                React.createElement('div', { key: comment._id, className: 'comment-item' },
+                                  React.createElement('div', { className: 'comment-header' },
+                                    React.createElement('span', { className: 'comment-username' }, comment.userId.username),
+                                    React.createElement('span', { className: 'comment-time' }, new Date(comment.createdAt).toLocaleString())
+                                  ),
+                                  React.createElement('div', { className: 'comment-content' }, comment.content)
+                                )
+                              ))
+                            )
+                          )
+                        )
+                      )
+                    ))
+                  )
+                )
+              ),
+
+              React.createElement('section', { className: 'gallery-section' },
+                React.createElement('h2', null, '普通专区'),
+                normalItems.length === 0 ? (
+                  React.createElement('p', { style: { textAlign: 'center', color: '#aaa' } }, '暂无展品')
+                ) : (
+                  React.createElement('div', { className: 'gallery-grid' },
+                    normalItems.map(item => (
+                      React.createElement('div', { key: item._id, className: 'item-card' },
+                        React.createElement('img', { src: item.image, alt: item.title, className: 'item-image' }),
+                        React.createElement('div', { className: 'item-content' },
+                          React.createElement('h3', { className: 'item-title' }, item.title),
+                          React.createElement('p', { className: 'item-description' }, item.description),
+                          React.createElement('div', { className: 'item-meta' },
+                            React.createElement('span', null, new Date(item.createdAt).toLocaleString()),
+                            React.createElement('span', null, item.userId?.username || '未知用户')
+                          ),
+                          // 评论部分
+                          React.createElement('div', { className: 'comments-section' },
+                            React.createElement('h3', null, '评论'),
+                            // 评论表单
+                            React.createElement('div', { className: 'comment-form' },
+                              React.createElement('textarea', {
+                                placeholder: '写下你的评论...',
+                                value: commentContent,
+                                onChange: (e) => setCommentContent(e.target.value)
+                              }),
+                              React.createElement('button', {
+                                className: 'btn',
+                                onClick: () => handleCommentSubmit(item._id)
+                              }, '发表评论')
+                            ),
+                            // 评论列表
+                            React.createElement('div', { className: 'comments-list' },
+                              React.createElement('button', {
+                                className: 'btn btn-secondary',
+                                onClick: () => fetchComments(item._id)
+                              }, '加载评论'),
+                              comments[item._id]?.map(comment => (
+                                React.createElement('div', { key: comment._id, className: 'comment-item' },
+                                  React.createElement('div', { className: 'comment-header' },
+                                    React.createElement('span', { className: 'comment-username' }, comment.userId.username),
+                                    React.createElement('span', { className: 'comment-time' }, new Date(comment.createdAt).toLocaleString())
+                                  ),
+                                  React.createElement('div', { className: 'comment-content' }, comment.content)
+                                )
+                              ))
+                            )
+                          )
+                        )
+                      )
+                    ))
+                  )
+                )
               )
             )
-          ),
+          )
+        ),
 
-          React.createElement('section', { className: 'gallery-section' },
-            React.createElement('h2', null, '普通专区'),
-            normalItems.length === 0 ? (
-              React.createElement('p', { style: { textAlign: 'center', color: '#aaa' } }, '暂无展品')
-            ) : (
-              React.createElement('div', { className: 'gallery-grid' },
-                normalItems.map(item => (
-                  React.createElement('div', { key: item.id, className: 'item-card' },
-                    React.createElement('img', { src: item.image, alt: item.title, className: 'item-image' }),
-                    React.createElement('div', { className: 'item-content' },
-                      React.createElement('h3', { className: 'item-title' }, item.title),
-                      React.createElement('p', { className: 'item-description' }, item.description),
-                      React.createElement('div', { className: 'item-meta' },
-                        React.createElement('span', null, item.date),
-                        React.createElement('span', null, item.section === 'apple' ? '青苹果专区' : '普通专区')
-                      )
+        // 好友页面
+        isAuthenticated && currentView === 'friends' && (
+          React.createElement('section', { className: 'friends-section' },
+            React.createElement('h2', null, '好友'),
+            showSuccess && React.createElement('div', { className: 'message success' }, showSuccess),
+            showError && React.createElement('div', { className: 'message error' }, showError),
+            
+            // 搜索用户
+            React.createElement('div', { className: 'search-bar' },
+              React.createElement('input', {
+                type: 'text',
+                placeholder: '搜索用户...',
+                value: searchKeyword,
+                onChange: (e) => setSearchKeyword(e.target.value)
+              }),
+              React.createElement('button', {
+                className: 'btn',
+                onClick: searchUsers
+              }, '搜索')
+            ),
+            
+            // 搜索结果
+            searchResults.length > 0 && (
+              React.createElement('div', { className: 'search-results' },
+                React.createElement('h3', null, '搜索结果'),
+                React.createElement('div', { className: 'friends-list' },
+                  searchResults.map(user => (
+                    React.createElement('div', { key: user._id, className: 'friend-item' },
+                      React.createElement('div', { className: 'friend-info' },
+                        React.createElement('div', { className: 'friend-name' }, user.username)
+                      ),
+                      React.createElement('button', {
+                        className: 'btn',
+                        onClick: () => sendFriendRequest(user._id)
+                      }, '发送请求')
                     )
+                  ))
+                )
+              )
+            ),
+            
+            // 好友请求
+            friendRequests.length > 0 && (
+              React.createElement('div', { className: 'requests-section' },
+                React.createElement('h3', null, '好友请求'),
+                React.createElement('div', { className: 'requests-list' },
+                  friendRequests.map(request => (
+                    React.createElement('div', { key: request._id, className: 'request-item' },
+                      React.createElement('div', { className: 'request-info' },
+                        React.createElement('div', { className: 'request-name' }, request.senderId.username)
+                      ),
+                      React.createElement('button', {
+                        className: 'btn',
+                        onClick: () => acceptFriendRequest(request._id)
+                      }, '接受')
+                    )
+                  ))
+                )
+              )
+            ),
+            
+            // 好友列表
+            React.createElement('div', { className: 'friends-list-section' },
+              React.createElement('h3', null, '好友列表'),
+              friends.length === 0 ? (
+                React.createElement('p', { style: { textAlign: 'center', color: '#aaa' } }, '暂无好友')
+              ) : (
+                React.createElement('div', { className: 'friends-list' },
+                  friends.map(friend => (
+                    React.createElement('div', { key: friend._id, className: 'friend-item' },
+                      React.createElement('div', { className: 'friend-info' },
+                        React.createElement('div', { className: 'friend-name' }, friend.username)
+                      ),
+                      React.createElement('button', {
+                        className: 'btn',
+                        onClick: () => {
+                          setSelectedFriend(friend);
+                          setCurrentView('messages');
+                          fetchMessages(friend._id);
+                        }
+                      }, '发消息')
+                    )
+                  ))
+                )
+              )
+            )
+          )
+        ),
+
+        // 消息页面
+        isAuthenticated && currentView === 'messages' && (
+          React.createElement('section', { className: 'messages-section' },
+            React.createElement('h2', null, '消息'),
+            showSuccess && React.createElement('div', { className: 'message success' }, showSuccess),
+            showError && React.createElement('div', { className: 'message error' }, showError),
+            
+            // 创建群组
+            React.createElement('div', { className: 'group-form' },
+              React.createElement('h3', null, '创建群组'),
+              React.createElement('div', { className: 'form-group' },
+                React.createElement('label', { htmlFor: 'group-name' }, '群组名称'),
+                React.createElement('input', {
+                  type: 'text',
+                  id: 'group-name',
+                  value: groupName,
+                  onChange: (e) => setGroupName(e.target.value)
+                })
+              ),
+              React.createElement('div', { className: 'form-group' },
+                React.createElement('label', null, '选择成员'),
+                React.createElement('div', { className: 'group-members' },
+                  friends.map(friend => (
+                    React.createElement('div', { key: friend._id, className: 'member-tag' },
+                      React.createElement('span', null, friend.username),
+                      React.createElement('span', {
+                        className: 'remove',
+                        onClick: () => setGroupMembers(prev => prev.filter(m => m._id !== friend._id))
+                      }, '×')
+                    )
+                  ))
+                )
+              ),
+              React.createElement('button', {
+                className: 'btn',
+                onClick: createGroup
+              }, '创建群组')
+            ),
+            
+            // 群组列表
+            groups.length > 0 && (
+              React.createElement('div', { className: 'groups-section' },
+                React.createElement('h3', null, '群组'),
+                React.createElement('div', { className: 'groups-list' },
+                  groups.map(group => (
+                    React.createElement('div', { key: group._id, className: 'group-item' },
+                      React.createElement('div', { className: 'group-info' },
+                        React.createElement('div', { className: 'group-name' }, group.name),
+                        React.createElement('div', { style: { fontSize: '0.8rem', color: '#aaa' } },
+                          `成员: ${group.memberIds.length}`
+                        )
+                      ),
+                      React.createElement('button', {
+                        className: 'btn',
+                        onClick: () => setSelectedGroup(group)
+                      }, '进入群聊')
+                    )
+                  ))
+                )
+              )
+            ),
+            
+            // 聊天界面
+            (selectedFriend || selectedGroup) && (
+              React.createElement('div', { className: 'chat-container' },
+                React.createElement('div', { className: 'chat-sidebar' },
+                  React.createElement('h3', null, '好友'),
+                  React.createElement('div', { className: 'friends-list' },
+                    friends.map(friend => (
+                      React.createElement('div', {
+                        key: friend._id,
+                        className: `friend-item ${selectedFriend && selectedFriend._id === friend._id ? 'active' : ''}`,
+                        onClick: () => {
+                          setSelectedFriend(friend);
+                          setSelectedGroup(null);
+                          fetchMessages(friend._id);
+                        }
+                      },
+                        React.createElement('div', { className: 'friend-info' },
+                          React.createElement('div', { className: 'friend-name' }, friend.username)
+                        )
+                      )
+                    ))
+                  ),
+                  React.createElement('h3', { style: { marginTop: '1rem' } }, '群组'),
+                  React.createElement('div', { className: 'groups-list' },
+                    groups.map(group => (
+                      React.createElement('div', {
+                        key: group._id,
+                        className: `group-item ${selectedGroup && selectedGroup._id === group._id ? 'active' : ''}`,
+                        onClick: () => {
+                          setSelectedGroup(group);
+                          setSelectedFriend(null);
+                        }
+                      },
+                        React.createElement('div', { className: 'group-info' },
+                          React.createElement('div', { className: 'group-name' }, group.name)
+                        )
+                      )
+                    ))
                   )
-                ))
+                ),
+                React.createElement('div', { className: 'chat-main' },
+                  React.createElement('div', { className: 'chat-header' },
+                    React.createElement('h3', null, selectedFriend ? selectedFriend.username : selectedGroup.name)
+                  ),
+                  React.createElement('div', { className: 'chat-messages' },
+                    messages.map(message => (
+                      React.createElement('div', {
+                        key: message._id,
+                        className: `chat-message ${message.senderId._id === user._id ? 'own' : 'other'}`
+                      },
+                        React.createElement('div', { style: { fontSize: '0.8rem', marginBottom: '0.25rem' } },
+                          message.senderId.username
+                        ),
+                        React.createElement('div', null, message.content),
+                        React.createElement('div', { style: { fontSize: '0.7rem', marginTop: '0.25rem', textAlign: 'right' } },
+                          new Date(message.createdAt).toLocaleTimeString()
+                        )
+                      )
+                    ))
+                  ),
+                  React.createElement('div', { className: 'chat-input' },
+                    React.createElement('input', {
+                      type: 'text',
+                      placeholder: '输入消息...',
+                      value: messageContent,
+                      onChange: (e) => setMessageContent(e.target.value)
+                    }),
+                    React.createElement('button', {
+                      className: 'btn',
+                      onClick: sendMessage
+                    }, '发送')
+                  )
+                )
               )
             )
           )
